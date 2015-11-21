@@ -9,6 +9,10 @@ using AssemblyCSharp;
 
 public class GameController : MonoBehaviour {
 	public Text sequenceHelper;
+	public float trapDoorClosingTime = 1f;
+	public float trapDoorOpeningTime = 1f;
+	public float trapDoorWaitingTime = 2f;
+	public float sequenceCountDown = 5f;
 
     private PlayerController playerController;
 	private GameObject blueZone;
@@ -50,26 +54,6 @@ public class GameController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Delete)) {
 			InputTracking.Recenter ();
 		}
-        /*currentTime += Time.deltaTime;
-        if (currentTime < timeLimit)
-        {
-            return;
-        }
-        if (zoneOpened == false)
-        {
-            zoneOpened = true;
-            BallColor color = generator.getLastColor();
-            OpenAllZonesOtherThan(color);
-            currentTime = 0;
-			if (!PlayerIsInSafeZone(color)) {
-				playerController.Fall();
-			}
-        }
-        else
-        {
-            CloseZone();
-            Reset();
-        }*/
 	}
 
 	private void OpenAllZonesOtherThan(BallColor color)
@@ -147,14 +131,14 @@ public class GameController : MonoBehaviour {
 	private void PrepareTrapDoorSequence() {
 		UpdateSequenceHelper ();
 		remainingSequence = generator.sequence.ToList<BallColor> ();
-		InvokeRepeating("UpdateTrapDoors", 5f, 4f);
+		InvokeRepeating("UpdateTrapDoors", sequenceCountDown, trapDoorOpeningTime + trapDoorClosingTime + trapDoorWaitingTime);
 	}
 
 	private void UpdateTrapDoors() {
 		if (remainingSequence.Any ()) {
 			OpenAllZonesOtherThan (remainingSequence.First<BallColor> ());
 			remainingSequence = remainingSequence.Skip (1).ToList<BallColor> ();
-			Invoke ("CloseZones", 1f);
+			Invoke ("CloseZones", trapDoorClosingTime);
 		} else {
 			CancelInvoke();
 		}
