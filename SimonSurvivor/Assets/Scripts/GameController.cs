@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using AssemblyCSharp;
 
 public class GameController : MonoBehaviour {
+	public Text sequenceHelper;
+
     private PlayerController playerController;
-    private ZoneController blueController;
-    private ZoneController greenController;
-    private ZoneController redController;
-    private ZoneController yellowController;
 	private GameObject blueZone;
 	private GameObject greenZone;
 	private GameObject redZone;
 	private GameObject yellowZone;
 	private Camera mainCamera;
 
-    private BallSequenceGenerator generator = new BallSequenceGenerator();
+    private BallSequenceGenerator generator;
+
+	private IList<BallColor> remainingSequence;
 
     private float currentTime;
     private float timeLimit = 1f;
@@ -29,18 +31,21 @@ public class GameController : MonoBehaviour {
 		greenZone = GameObject.Find("Green Zone");
 		redZone = GameObject.Find("Red Zone");
 		yellowZone = GameObject.Find("Yellow Zone");
-		blueController = blueZone.GetComponent<ZoneController>();
-        greenController = greenZone.GetComponent<ZoneController>();
-		redController = redZone.GetComponent<ZoneController>();
-		yellowController = yellowZone.GetComponent<ZoneController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
-        Reset();
+		ResetSequence();
+		Reset();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        currentTime += Time.deltaTime;
+		if (Input.GetKeyDown (KeyCode.Backspace)) {
+			ResetSequence();
+		} 
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			IncrementSequence();
+		}
+        /*currentTime += Time.deltaTime;
         if (currentTime < timeLimit)
         {
             return;
@@ -48,7 +53,7 @@ public class GameController : MonoBehaviour {
         if (zoneOpened == false)
         {
             zoneOpened = true;
-            BallColor color = generator.addNewBall().getLastColor();
+            BallColor color = generator.getLastColor();
             OpenAllZonesOtherThan(color);
             currentTime = 0;
 			if (!PlayerIsInSafeZone(color)) {
@@ -59,7 +64,7 @@ public class GameController : MonoBehaviour {
         {
             CloseZone();
             Reset();
-        }
+        }*/
 	}
 
 	private void OpenAllZonesOtherThan(BallColor color)
@@ -70,9 +75,12 @@ public class GameController : MonoBehaviour {
 		foreach (GameObject zone in hazardousZones) {
 			zone.GetComponent<ZoneController>().changeState();
 		}
+		if (!PlayerIsInSafeZone (color)) {
+			playerController.Fall();
+		}
     }
 
-    private void CloseZone()
+    private void CloseZones()
     {
 		var availableColors = Enum.GetValues(typeof(BallColor)).Cast<BallColor>();
 		var allZones = availableColors.Select(c => ZoneFor(c));
@@ -84,7 +92,6 @@ public class GameController : MonoBehaviour {
     private void Reset()
     {
         currentTime = 0;
-        generator.reset();
         zoneOpened = false;
     }
 
@@ -115,5 +122,36 @@ public class GameController : MonoBehaviour {
 		default:
 			return null;
 		} 
+	}
+
+	private void ResetSequence() {
+		generator = new BallSequenceGenerator().addNewBall();
+		PrepareTrapDoorSequence();
+	}
+	
+	private void IncrementSequence() {
+		generator = generator.addNewBall();
+		PrepareTrapDoorSequence();
+	}
+
+	private void UpdateSequenceHelper() {
+		sequenceHelper.text = "" + generator.sequence.Select(c => c.ToString("F"))
+			                                         .Aggregate((c, n) => c + "-" + n);
+	}
+
+	private void PrepareTrapDoorSequence() {
+		UpdateSequenceHelper ();
+		remainingSequence = generator.sequence.ToList<BallColor> ();
+		InvokeRepeating("UpdateTrapDoors", 5f, 2f);
+	}
+
+	private void UpdateTrapDoors() {
+		if (remainingSequence.Any ()) {
+			OpenAllZonesOtherThan (remainingSequence.First<BallColor> ());
+			remainingSequence = remainingSequence.Skip (1).ToList<BallColor> ();
+			Invoke ("CloseZones", 1f);
+		} else {
+			CancelInvoke();
+		}
 	}
 }
