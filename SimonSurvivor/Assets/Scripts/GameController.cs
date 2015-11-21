@@ -146,6 +146,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void ResetSequence() {
+		CancelInvoke();
 		score = 0;
 		pipeGenerator = new PipeSequenceGenerator().addNewPipe();
 		ballGenerator = new BallSequenceGenerator().addNewBall();
