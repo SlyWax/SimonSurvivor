@@ -428,19 +428,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 145782, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_Name
       value: Pipe B
-      objectReference: {fileID: 0}
-    - target: {fileID: 189894, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_Name
-      value: Sphere B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
@@ -706,19 +698,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 145782, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_Name
       value: Pipe A
-      objectReference: {fileID: 0}
-    - target: {fileID: 189894, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_Name
-      value: Sphere A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
@@ -1083,10 +1067,10 @@ Transform:
   m_LocalPosition: {x: 1.16999996, y: 1.36000001, z: 1.17999995}
   m_LocalScale: {x: 1, y: 12.750001, z: 1}
   m_Children:
-  - {fileID: 936594434}
-  - {fileID: 1508683092}
-  - {fileID: 1633548658}
   - {fileID: 642727610}
+  - {fileID: 1508683092}
+  - {fileID: 936594434}
+  - {fileID: 1633548658}
   m_Father: {fileID: 0}
   m_RootOrder: 9
 --- !u!1 &1296800322
@@ -1526,19 +1510,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 145782, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_Name
       value: Pipe C
-      objectReference: {fileID: 0}
-    - target: {fileID: 189894, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_Name
-      value: Sphere C
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
@@ -1676,17 +1652,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 145782, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
       propertyPath: m_Name
       value: Pipe D
-      objectReference: {fileID: 0}
-    - target: {fileID: 189894, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
-      propertyPath: m_Name
-      value: Sphere D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}

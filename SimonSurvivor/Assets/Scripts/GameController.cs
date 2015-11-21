@@ -53,11 +53,11 @@ public class GameController : MonoBehaviour {
 		pipeB = GameObject.Find("Pipe B");
 		pipeC = GameObject.Find("Pipe C");
 		pipeD = GameObject.Find("Pipe D");
-		sphereA = GameObject.Find("Sphere A");
-		sphereB = GameObject.Find("Sphere B");
-		sphereC = GameObject.Find("Sphere C");
-		sphereD = GameObject.Find("Sphere D");
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+		sphereA = pipeA.transform.Find("Boule").gameObject;
+		sphereB = pipeB.transform.Find("Boule").gameObject;
+		sphereC = pipeC.transform.Find("Boule").gameObject;
+		sphereD = pipeD.transform.Find("Boule").gameObject;
+		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
 		ResetSequence();
 		InputTracking.Recenter ();
