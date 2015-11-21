@@ -21,7 +21,7 @@ namespace AssemblyCSharp
 		public BallSequenceGenerator ()
 		{
 			sequence = new List<BallColor> ();
-			random = new Random ();
+			random = RandomSingleton.getInstance().random;
 		}
 
 		public BallSequenceGenerator addNewBall() {

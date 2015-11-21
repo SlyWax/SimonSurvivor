@@ -70,6 +70,11 @@ public class GameController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Delete)) {
 			InputTracking.Recenter ();
 		}
+		if (playerController.dead) {
+			playerController.Reset();
+			ResetSequence();
+			CloseZones();
+		}
 	}
 
 	private void OpenAllZonesOtherThan(BallColor color)

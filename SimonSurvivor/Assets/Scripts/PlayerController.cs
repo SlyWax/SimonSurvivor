@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     public bool isFalling = false;
+	public bool dead = false;
     public float fallingSpeed = 1.0f;
     private Vector3 originPosition;
 
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                Reset();
+				dead = true;
             }
         }
     }
@@ -41,5 +42,6 @@ public class PlayerController : MonoBehaviour {
     {
         transform.position = originPosition;
         isFalling = false;
+		dead = false;
     }
 }
