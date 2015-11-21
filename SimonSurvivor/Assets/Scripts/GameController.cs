@@ -9,6 +9,7 @@ using AssemblyCSharp;
 
 public class GameController : MonoBehaviour {
 	public Text sequenceHelper;
+	public TextMesh scoreKeeper;
 	public float trapDoorClosingTime = 1f;
 	public float trapDoorOpeningTime = 1f;
 	public float trapDoorWaitingTime = 2f;
@@ -22,13 +23,8 @@ public class GameController : MonoBehaviour {
 	private Camera mainCamera;
 
     private BallSequenceGenerator generator;
-
+	private int score;
 	private IList<BallColor> remainingSequence;
-
-    private float currentTime;
-    private float timeLimit = 1f;
-
-    private bool zoneOpened = false;
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +35,6 @@ public class GameController : MonoBehaviour {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
 		ResetSequence();
-		Reset();
 		InputTracking.Recenter ();
     }
 	
@@ -65,8 +60,8 @@ public class GameController : MonoBehaviour {
 			zone.GetComponent<ZoneController>().changeState();
 		}
 		if (!PlayerIsInSafeZone (color)) {
-			playerController.Fall();
-		}
+			playerController.Fall ();
+		} 
     }
 
     private void CloseZones()
@@ -76,12 +71,6 @@ public class GameController : MonoBehaviour {
 		foreach (GameObject zone in allZones) {
 			zone.GetComponent<ZoneController>().isOpening = false;
 		}
-    }
-
-    private void Reset()
-    {
-        currentTime = 0;
-        zoneOpened = false;
     }
 
 	private bool PlayerIsInSafeZone(BallColor color) {
@@ -114,11 +103,13 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void ResetSequence() {
+		score = 0;
 		generator = new BallSequenceGenerator().addNewBall();
 		PrepareTrapDoorSequence();
 	}
 	
 	private void IncrementSequence() {
+		score++;
 		generator = generator.addNewBall();
 		PrepareTrapDoorSequence();
 	}
@@ -128,8 +119,14 @@ public class GameController : MonoBehaviour {
 			                                         .Aggregate((c, n) => c + "-" + n);
 	}
 
+	
+	private void UpdateScoreKeeper() {
+		scoreKeeper.text = score.ToString ();
+	}
+
 	private void PrepareTrapDoorSequence() {
 		UpdateSequenceHelper ();
+		UpdateScoreKeeper ();
 		remainingSequence = generator.sequence.ToList<BallColor> ();
 		InvokeRepeating("UpdateTrapDoors", sequenceCountDown, trapDoorOpeningTime + trapDoorClosingTime + trapDoorWaitingTime);
 	}
@@ -141,6 +138,7 @@ public class GameController : MonoBehaviour {
 			Invoke ("CloseZones", trapDoorClosingTime);
 		} else {
 			CancelInvoke();
+			IncrementSequence();
 		}
 	}
 }
