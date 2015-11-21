@@ -90,7 +90,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1723524307}
     m_Modifications:
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.x
@@ -130,7 +130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.75
+      value: 12.750001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.z
@@ -138,7 +138,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_Name
-      value: TubeTest (2)
+      value: Pipe A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
@@ -223,7 +223,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1723524307}
     m_Modifications:
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -255,7 +255,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.x
@@ -263,7 +263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.75
+      value: 12.750001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.z
@@ -271,7 +271,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_Name
-      value: TubeTest (3)
+      value: Pipe B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
@@ -368,6 +368,10 @@ MonoBehaviour:
   closingSpeed: 10
   transformOrigin: {x: 0, y: 0, z: 0}
   transformDestination: {x: 0, y: 0, z: 0}
+--- !u!4 &413032331 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
+  m_PrefabInternal: {fileID: 341209015}
 --- !u!1 &485018710
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +447,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
 --- !u!1 &525376115
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,14 +476,14 @@ Transform:
   m_Children:
   - {fileID: 1150951471}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
 --- !u!114 &525376117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 525376115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be793546c5263c041b28aa13e550c249, type: 3}
   m_Name: 
@@ -593,7 +597,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1723524307}
     m_Modifications:
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -625,7 +629,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.x
@@ -633,7 +637,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.75
+      value: 12.7500019
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.z
@@ -641,7 +645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_Name
-      value: TubeTest (1)
+      value: Pipe D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
@@ -825,7 +829,7 @@ Transform:
   m_LocalScale: {x: .049999997, y: 1.25100005, z: -.049999997}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
 --- !u!23 &813185692
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1176,7 +1180,7 @@ Transform:
   - {fileID: 392118958}
   - {fileID: 1972797559}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
 --- !u!1 &1256190731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
 --- !u!1 &1327279872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,7 +1298,11 @@ Transform:
   - {fileID: 228946571}
   - {fileID: 800731325}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
+--- !u!4 &1337986167 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
+  m_PrefabInternal: {fileID: 1859784579}
 --- !u!1 &1359840864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1631,37 @@ MonoBehaviour:
   closingSpeed: 10
   transformOrigin: {x: 0, y: 0, z: 0}
   transformDestination: {x: 0, y: 0, z: 0}
+--- !u!1 &1723524306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1723524307}
+  m_Layer: 0
+  m_Name: Pipes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723524307
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723524306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2040526868}
+  - {fileID: 413032331}
+  - {fileID: 1337986167}
+  - {fileID: 1856835604}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1 &1727847915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,12 +1689,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2028076197}
   m_RootOrder: 4
+--- !u!4 &1856835604 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
+  m_PrefabInternal: {fileID: 662519164}
 --- !u!1001 &1859784579
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1723524307}
     m_Modifications:
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1687,7 +1730,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1695,11 +1738,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.75
+      value: 12.750001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
+      propertyPath: m_Name
+      value: Pipe C
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
@@ -1733,6 +1780,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceHelper: {fileID: 1359840866}
   scoreKeeper: {fileID: 485018711}
+  intervalBetweenSequences: 1
+  pipeLightingTime: 1
+  pipeIntervalTime: 1
   trapDoorClosingTime: 1
   trapDoorOpeningTime: 1
   trapDoorWaitingTime: 2
@@ -1748,7 +1798,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
 --- !u!1 &1972797555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1924,10 @@ Transform:
   - {fileID: 1393437483}
   m_Father: {fileID: 1150951471}
   m_RootOrder: 1
+--- !u!4 &2040526868 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
+  m_PrefabInternal: {fileID: 155924383}
 --- !u!1 &2114892966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +2001,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
 --- !u!1 &2134213536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2032,7 +2086,7 @@ RectTransform:
   m_Children:
   - {fileID: 1359840865}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
