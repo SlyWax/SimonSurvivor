@@ -2,22 +2,26 @@
 using System.Collections;
 
 public class CameraVRCorrection : MonoBehaviour {
-	public float moveScale = 1.0f;
+    [SerializeField]
+	private float moveScale = 1.0f;
 
-	private Vector3 previousPosition;
+	public Vector3 previousPosition;
 
 	// Use this for initialization
 	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (previousPosition == Vector3.zero) {
-			previousPosition = transform.position;
-		} else {
-			Vector3 move = transform.position - previousPosition;
-			move.Normalize();
-			transform.Translate(move * moveScale);
-		}
-	}
+        updatePreviousPosition();
+    }
+
+    // Update is called once per frame
+    void LateUpdate () {
+		Vector3 move2D = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z) - previousPosition;
+		//move.Normalize();
+		transform.Translate(-move2D * moveScale);
+        updatePreviousPosition();
+    }
+
+    void updatePreviousPosition()
+    {
+        previousPosition = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
+    }
 }
