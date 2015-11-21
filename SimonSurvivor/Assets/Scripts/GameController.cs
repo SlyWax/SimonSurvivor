@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour {
     private BallSequenceGenerator ballGenerator;
 	private PipeSequenceGenerator pipeGenerator;
 	private int score;
+	private int highScore = 0;
 	private IList<Pipe> remainingPipes;
 	private IList<BallColor> remainingSequence;
 
@@ -73,7 +74,6 @@ public class GameController : MonoBehaviour {
 		if (playerController.dead) {
 			playerController.Reset();
 			ResetSequence();
-			CloseZones();
 		}
 	}
 
@@ -87,8 +87,19 @@ public class GameController : MonoBehaviour {
 		}
 		if (!PlayerIsInSafeZone (color)) {
 			playerController.Fall ();
-		} 
+		} else if (!remainingSequence.Any()) {
+			UpdateScore();
+		}
     }
+
+	private void UpdateScore() {
+		score++;	
+		if (score > highScore)
+		{
+			highScore = score;
+		}
+		scoreKeeper.text = score.ToString ();
+	}
 
     private void CloseZones()
     {
@@ -175,19 +186,18 @@ public class GameController : MonoBehaviour {
 
 	private void ResetSequence() {
 		CancelInvoke();
+		CloseZones();
+		TurnOffPipes ();
 		score = 0;
 		pipeGenerator = new PipeSequenceGenerator().addNewPipe();
 		ballGenerator = new BallSequenceGenerator().addNewBall();
 		PlaySequenceToRemember();
-		//PrepareTrapDoorSequence();
 	}
 	
 	private void IncrementSequence() {
-		score++;		
 		pipeGenerator = pipeGenerator.addNewPipe();
 		ballGenerator = ballGenerator.addNewBall();
 		PlaySequenceToRemember();
-		//PrepareTrapDoorSequence();
 	}
 
 	private void PlaySequenceToRemember() {
@@ -216,7 +226,7 @@ public class GameController : MonoBehaviour {
 	private void TurnOffPipes() {
 		var pipeTypes = Enum.GetValues(typeof(Pipe)).Cast<Pipe>();
 		foreach (Pipe pipe in pipeTypes) {
-			PipeFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
+			PipeFor(pipe).GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 1f);
 			SphereFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
 		}
 	}
@@ -226,22 +236,17 @@ public class GameController : MonoBehaviour {
 			                                             .Aggregate((c, n) => c + "-" + n);
 	}
 
-	
-	private void UpdateScoreKeeper() {
-		scoreKeeper.text = score.ToString ();
-	}
-
 	private void PrepareTrapDoorSequence() {
 		UpdateSequenceHelper ();
-		UpdateScoreKeeper();
 		remainingSequence = ballGenerator.sequence.ToList<BallColor> ();
 		InvokeRepeating("UpdateTrapDoors", sequenceCountDown, trapDoorOpeningTime + trapDoorClosingTime + trapDoorWaitingTime);
 	}
 
 	private void UpdateTrapDoors() {
 		if (remainingSequence.Any ()) {
-			OpenAllZonesOtherThan (remainingSequence.First<BallColor> ());
+			var ballColor = remainingSequence.First<BallColor> ();
 			remainingSequence = remainingSequence.Skip (1).ToList<BallColor> ();
+			OpenAllZonesOtherThan (ballColor);
 			Invoke ("CloseZones", trapDoorClosingTime);
 		} else {
 			CancelInvoke();
