@@ -27,6 +27,10 @@ public class GameController : MonoBehaviour {
 	private GameObject pipeB;
 	private GameObject pipeC;
 	private GameObject pipeD;
+	private GameObject sphereA;
+	private GameObject sphereB;
+	private GameObject sphereC;
+	private GameObject sphereD;
 	private Camera mainCamera;
 
     private BallSequenceGenerator ballGenerator;
@@ -45,6 +49,10 @@ public class GameController : MonoBehaviour {
 		pipeB = GameObject.Find("Pipe B");
 		pipeC = GameObject.Find("Pipe C");
 		pipeD = GameObject.Find("Pipe D");
+		sphereA = GameObject.Find("Sphere A");
+		sphereB = GameObject.Find("Sphere B");
+		sphereC = GameObject.Find("Sphere C");
+		sphereD = GameObject.Find("Sphere D");
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
 		ResetSequence();
@@ -145,6 +153,21 @@ public class GameController : MonoBehaviour {
 		} 
 	}
 
+	private GameObject SphereFor(Pipe pipe) {
+		switch (pipe) {
+		case Pipe.A:
+			return sphereA;
+		case Pipe.B:
+			return sphereB;
+		case Pipe.C:
+			return sphereC;
+		case Pipe.D:
+			return sphereD;
+		default:
+			return null;
+		} 
+	}
+
 	private void ResetSequence() {
 		CancelInvoke();
 		score = 0;
@@ -181,14 +204,15 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void LightPipeWithColor(Pipe pipe, BallColor ballColor) {
-		PipeFor(pipe).GetComponent<Renderer>().material.color = ColorFor(ballColor);
+		PipeFor(pipe).GetComponent<Renderer>().material.color = Color.white;
+		SphereFor(pipe).GetComponent<Renderer>().material.color = ColorFor(ballColor);
 	}
 
 	private void TurnOffPipes() {
 		var pipeTypes = Enum.GetValues(typeof(Pipe)).Cast<Pipe>();
-		var allPipes = pipeTypes.Select(p => PipeFor(p));
-		foreach (GameObject pipe in allPipes) {
-			pipe.GetComponent<Renderer>().material.color = Color.white;
+		foreach (Pipe pipe in pipeTypes) {
+			PipeFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
+			SphereFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
 		}
 	}
 
