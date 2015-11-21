@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour {
             BallColor color = generator.addNewBall().getLastColor();
             OpenAllZonesOtherThan(color);
             currentTime = 0;
-			if (PlayerIsInSafeZone(color)) {
+			if (!PlayerIsInSafeZone(color)) {
 				playerController.Fall();
 			}
         }
@@ -93,8 +93,10 @@ public class GameController : MonoBehaviour {
 		RaycastHit hit;
 		bool isInSafeZone = false;
 
-		if (Physics.Raycast(ray, out hit, 10)) {
-			GameObject zone = ZoneFor(color);
+        Debug.DrawRay(mainCamera.transform.position, Vector3.down, Color.red, 5.0f);
+
+        if (Physics.Raycast(ray, out hit, 10)) {
+            GameObject zone = ZoneFor(color);
 			if (zone != null) {
 				isInSafeZone = hit.transform.IsChildOf(zone.transform);
 			}
