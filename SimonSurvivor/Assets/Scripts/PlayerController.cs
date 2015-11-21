@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                transform.position = originPosition;
+                Reset();
             }
         }
     }
@@ -35,5 +35,11 @@ public class PlayerController : MonoBehaviour {
     public void Fall()
     {
         isFalling = true;
+    }
+
+    public void Reset()
+    {
+        transform.position = originPosition;
+        isFalling = false;
     }
 }
