@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VR;
 using System;
 using System.Linq;
 using System.Collections;
@@ -35,6 +36,7 @@ public class GameController : MonoBehaviour {
 		mainCamera = Camera.main;
 		ResetSequence();
 		Reset();
+		InputTracking.Recenter ();
     }
 	
 	// Update is called once per frame
@@ -44,6 +46,9 @@ public class GameController : MonoBehaviour {
 		} 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			IncrementSequence();
+		}
+		if (Input.GetKeyDown (KeyCode.Delete)) {
+			InputTracking.Recenter ();
 		}
         /*currentTime += Time.deltaTime;
         if (currentTime < timeLimit)
@@ -142,7 +147,7 @@ public class GameController : MonoBehaviour {
 	private void PrepareTrapDoorSequence() {
 		UpdateSequenceHelper ();
 		remainingSequence = generator.sequence.ToList<BallColor> ();
-		InvokeRepeating("UpdateTrapDoors", 5f, 2f);
+		InvokeRepeating("UpdateTrapDoors", 5f, 4f);
 	}
 
 	private void UpdateTrapDoors() {
