@@ -3,9 +3,25 @@ guid: 1e06cf33a720ef549b95f30c1316a41a
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: pinchos
+    100004: tap
+    100006: tramp3
+    400000: //RootNode
+    400002: pinchos
+    400004: tap
+    400006: tramp3
+    2300000: pinchos
+    2300002: tap
+    2300004: tramp3
+    3300000: pinchos
+    3300002: tap
+    3300004: tramp3
     4300000: pinchos
     4300002: tramp3
     4300004: tap
+    7400000: Up Down
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -23,7 +39,7 @@ ModelImporter:
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
-    animationWrapMode: 0
+    animationWrapMode: 2
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
@@ -31,7 +47,7 @@ ModelImporter:
       takeName: 
       firstFrame: 1
       lastFrame: 70
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
