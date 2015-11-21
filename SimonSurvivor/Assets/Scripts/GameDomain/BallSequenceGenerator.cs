@@ -30,6 +30,17 @@ namespace AssemblyCSharp
 			sequence.Add (availableColors.ElementAt(colorIndex));
 			return this;
 		}
+
+        public BallSequenceGenerator reset()
+        {
+            sequence = new List<BallColor>();
+            return this;
+        }
+
+        public BallColor getLastColor()
+        {
+            return sequence[sequence.Count - 1];
+        }
 	}
 }
 
