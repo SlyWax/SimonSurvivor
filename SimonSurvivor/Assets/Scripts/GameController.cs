@@ -93,8 +93,6 @@ public class GameController : MonoBehaviour {
 		RaycastHit hit;
 		bool isInSafeZone = false;
 
-        Debug.DrawRay(mainCamera.transform.position, Vector3.down, Color.red, 5.0f);
-
         if (Physics.Raycast(ray, out hit, 10)) {
             GameObject zone = ZoneFor(color);
 			if (zone != null) {
