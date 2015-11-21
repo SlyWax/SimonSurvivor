@@ -3,7 +3,7 @@ using System.Collections;
 using AssemblyCSharp;
 
 public class GameController : MonoBehaviour {
-    private CameraController cameraController;
+    private PlayerController playerController;
     private ZoneController blueController;
     private ZoneController greenController;
     private ZoneController redController;
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
         greenController = GameObject.Find("Green Zone").GetComponent<ZoneController>();
         redController = GameObject.Find("Red Zone").GetComponent<ZoneController>();
         yellowController = GameObject.Find("Yellow Zone").GetComponent<ZoneController>();
-        cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         Reset();
     }
 	
@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour {
             BallColor color = generator.addNewBall().getLastColor();
             OpenZone(color);
             currentTime = 0;
+            playerController.Fall();
         }
         else
         {
