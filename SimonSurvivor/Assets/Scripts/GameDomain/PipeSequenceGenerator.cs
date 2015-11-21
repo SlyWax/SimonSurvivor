@@ -21,7 +21,7 @@ namespace AssemblyCSharp
 		public PipeSequenceGenerator ()
 		{
 			sequence = new List<Pipe> ();
-			random = new Random ();
+			random = RandomSingleton.getInstance().random;
 		}
 
 		public PipeSequenceGenerator addNewPipe() {
