@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Linq;
 using System.Collections;
 using AssemblyCSharp;
 
@@ -8,7 +10,12 @@ public class GameController : MonoBehaviour {
     private ZoneController greenController;
     private ZoneController redController;
     private ZoneController yellowController;
-    
+	private GameObject blueZone;
+	private GameObject greenZone;
+	private GameObject redZone;
+	private GameObject yellowZone;
+	private Camera mainCamera;
+
     private BallSequenceGenerator generator = new BallSequenceGenerator();
 
     private float currentTime;
@@ -18,11 +25,16 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        blueController = GameObject.Find("Blue Zone").GetComponent<ZoneController>();
-        greenController = GameObject.Find("Green Zone").GetComponent<ZoneController>();
-        redController = GameObject.Find("Red Zone").GetComponent<ZoneController>();
-        yellowController = GameObject.Find("Yellow Zone").GetComponent<ZoneController>();
+		blueZone = GameObject.Find("Blue Zone");
+		greenZone = GameObject.Find("Green Zone");
+		redZone = GameObject.Find("Red Zone");
+		yellowZone = GameObject.Find("Yellow Zone");
+		blueController = blueZone.GetComponent<ZoneController>();
+        greenController = greenZone.GetComponent<ZoneController>();
+		redController = redZone.GetComponent<ZoneController>();
+		yellowController = yellowZone.GetComponent<ZoneController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+		mainCamera = Camera.main;
         Reset();
     }
 	
@@ -37,9 +49,11 @@ public class GameController : MonoBehaviour {
         {
             zoneOpened = true;
             BallColor color = generator.addNewBall().getLastColor();
-            OpenZone(color);
+            OpenAllZonesOtherThan(color);
             currentTime = 0;
-            playerController.Fall();
+			if (PlayerIsInSafeZone(color)) {
+				playerController.Fall();
+			}
         }
         else
         {
@@ -48,40 +62,23 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-    private void OpenZone(BallColor color)
+	private void OpenAllZonesOtherThan(BallColor color)
     {
-        if (color == BallColor.Blue)
-        {
-            greenController.changeState();
-            redController.changeState();
-            yellowController.changeState();
-        }
-        else if (color == BallColor.Green)
-        {
-            blueController.changeState();
-            redController.changeState();
-            yellowController.changeState();
-        }
-        else if (color == BallColor.Red)
-        {
-            blueController.changeState();
-            greenController.changeState();
-            yellowController.changeState();
-        }
-        else if (color == BallColor.Yellow)
-        {
-            blueController.changeState();
-            greenController.changeState();
-            redController.changeState();
-        }
+		var availableColors = Enum.GetValues(typeof(BallColor)).Cast<BallColor>();
+		var hazardousZones = availableColors.Where(c => c != color)
+											.Select(c => ZoneFor(c));
+		foreach (GameObject zone in hazardousZones) {
+			zone.GetComponent<ZoneController>().changeState();
+		}
     }
 
     private void CloseZone()
     {
-        blueController.isOpening = false;
-        greenController.isOpening = false;
-        redController.isOpening = false;
-        yellowController.isOpening = false;
+		var availableColors = Enum.GetValues(typeof(BallColor)).Cast<BallColor>();
+		var allZones = availableColors.Select(c => ZoneFor(c));
+		foreach (GameObject zone in allZones) {
+			zone.GetComponent<ZoneController>().isOpening = false;
+		}
     }
 
     private void Reset()
@@ -90,4 +87,33 @@ public class GameController : MonoBehaviour {
         generator.reset();
         zoneOpened = false;
     }
+
+	private bool PlayerIsInSafeZone(BallColor color) {
+		Ray ray = new Ray(mainCamera.transform.position, Vector3.down);
+		RaycastHit hit;
+		bool isInSafeZone = false;
+
+		if (Physics.Raycast(ray, out hit, 10)) {
+			GameObject zone = ZoneFor(color);
+			if (zone != null) {
+				isInSafeZone = hit.transform.IsChildOf(zone.transform);
+			}
+		}
+		return isInSafeZone;
+	}
+
+	private GameObject ZoneFor(BallColor color) {
+		switch (color) {
+		case BallColor.Blue:
+			return blueZone;
+		case BallColor.Red:
+			return redZone;
+		case BallColor.Yellow:
+			return yellowZone;
+		case BallColor.Green:
+			return greenZone;
+		default:
+			return null;
+		} 
+	}
 }
