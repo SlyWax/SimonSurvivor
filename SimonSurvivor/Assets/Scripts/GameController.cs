@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour {
 		sphereC = pipeC.transform.Find("Boule").gameObject;
 		sphereD = pipeD.transform.Find("Boule").gameObject;
 
-		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
 		InputTracking.Recenter ();
     }
@@ -73,16 +73,20 @@ public class GameController : MonoBehaviour {
 		} 
 		if (Input.GetKeyDown (KeyCode.Space))
         {
-            tutorialText.text = "";
+            tutorialText.enabled = false;
             ResetSequence();
+            Start();
 		}
 		if (Input.GetKeyDown (KeyCode.Delete)) {
 			InputTracking.Recenter ();
 		}
 		if (playerController.dead) {
 			playerController.Reset();
-			ResetSequence();
-		}
+            CancelInvoke();
+            CloseZones();
+            TurnOffPipes();
+            tutorialText.enabled = true;
+        }
 	}
 
 	private void OpenAllZonesOtherThan(BallColor color)
