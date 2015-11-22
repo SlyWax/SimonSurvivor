@@ -24,7 +24,7 @@ namespace AssemblyCSharp
 			random = RandomSingleton.getInstance().random;
 		}
 
-		public PipeSequenceGenerator addNewBall() {
+		public PipeSequenceGenerator addNewPipe() {
 			Pipe pipe;
 			do {
 				pipe = GenerateRandomPipe();
