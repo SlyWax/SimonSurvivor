@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour {
 	private Camera mainCamera;
 	private AudioSource sonCentre;
 	private AudioSource sonFace;
+	private AudioSource sonMeca;
 
     private BallSequenceGenerator ballGenerator;
 	private PipeSequenceGenerator pipeGenerator;
@@ -67,6 +68,7 @@ public class GameController : MonoBehaviour {
 		sphereD = pipeD.transform.Find("Boule").gameObject;
 		sonCentre = (GameObject.Find("Audio Center")).GetComponent<AudioSource>();
 		sonFace = (GameObject.Find("Audio Face")).GetComponent<AudioSource>();
+		sonMeca = (GameObject.Find("Audio Meca")).GetComponent<AudioSource>();
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
@@ -299,6 +301,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void PrepareTrapDoorSequence() {
+		sonMeca.Play();
 		UpdateSequenceHelper ();
 		remainingSequence = ballGenerator.sequence.ToList<BallColor> ();
 		InvokeRepeating("UpdateTrapDoors", sequenceCountDown * currentSpeedFactor,
