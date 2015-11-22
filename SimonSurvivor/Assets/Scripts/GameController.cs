@@ -54,6 +54,7 @@ public class GameController : MonoBehaviour {
 		sphereB = pipeB.transform.Find("Boule").gameObject;
 		sphereC = pipeC.transform.Find("Boule").gameObject;
 		sphereD = pipeD.transform.Find("Boule").gameObject;
+
 		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
 		ResetSequence();
@@ -219,15 +220,24 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void LightPipeWithColor(Pipe pipe, BallColor ballColor) {
-		PipeFor(pipe).GetComponent<Renderer>().material.color = Color.white;
-		SphereFor(pipe).GetComponent<Renderer>().material.color = ColorFor(ballColor);
+		Animator anim = PipeFor(pipe).GetComponent<Animator>();
+		anim.SetInteger("couleur", (int)ballColor);
+		//anim.SetBool("scintille", true);
+
+
+		//PipeFor(pipe).GetComponent<Renderer>().material.color = Color.white;
+		//SphereFor(pipe).GetComponent<Renderer>().material.color = ColorFor(ballColor);
 	}
 
 	private void TurnOffPipes() {
 		var pipeTypes = Enum.GetValues(typeof(Pipe)).Cast<Pipe>();
 		foreach (Pipe pipe in pipeTypes) {
-			PipeFor(pipe).GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 1f);
-			SphereFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
+			Animator anim = PipeFor(pipe).GetComponent<Animator>();
+			anim.SetInteger("couleur", 99);
+			//anim.SetBool("scintille", true);
+
+			//PipeFor(pipe).GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+			//SphereFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
 		}
 	}
 
