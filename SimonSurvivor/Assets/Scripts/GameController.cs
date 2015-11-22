@@ -9,8 +9,10 @@ using AssemblyCSharp;
 
 public class GameController : MonoBehaviour {
 	public Text sequenceHelper;
-	public TextMesh scoreKeeper;
-	public TextMesh highScoreKeeper;
+	public UILabel scoreKeeper;
+	public UILabel highScoreKeeper;
+    public UILabel hardModeHighScoreKeeper;
+    public UILabel tutorialText;
 	public float intervalBetweenSequences = 1f;
 	public float pipeLightingTime = 1f;
 	public float pipeIntervalTime = 1f;
@@ -42,8 +44,11 @@ public class GameController : MonoBehaviour {
 	private PipeSequenceGenerator pipeGenerator;
 	private int score;
 	private int highScore = 0;
+    private int hardModeHighScore = 0;
 	private IList<Pipe> remainingPipes;
 	private IList<BallColor> remainingSequence;
+
+    private bool hardModeFlag = false;
 
 	// Use this for initialization
 	void Start () {
@@ -61,27 +66,42 @@ public class GameController : MonoBehaviour {
 		sphereD = pipeD.transform.Find("Boule").gameObject;
 		sonCentre = (GameObject.Find("Audio Center")).GetComponent<AudioSource>();
 
-		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
-		ResetSequence();
 		InputTracking.Recenter ();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Backspace)) {
-			ResetSequence();
+		if (Input.GetKeyDown (KeyCode.Backspace))
+        {
+            ResetSequence();
 		} 
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			IncrementSequence();
+		if (Input.GetKeyDown (KeyCode.Space))
+        {
+            hardModeFlag = false;
+            tutorialText.enabled = false;
+            ResetSequence();
+            Start();
 		}
-		if (Input.GetKeyDown (KeyCode.Delete)) {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            hardModeFlag = true;
+            tutorialText.enabled = false;
+            ResetSequence();
+            Start();
+        }
+        if (Input.GetKeyDown (KeyCode.Delete)) {
 			InputTracking.Recenter ();
 		}
 		if (playerController.dead) {
 			playerController.Reset();
-			ResetSequence();
-		}
+            CancelInvoke();
+            CloseZones();
+            TurnOffPipes();
+            hardModeFlag = false;
+            tutorialText.enabled = true;
+        }
 	}
 
 	private void OpenAllZonesOtherThan(BallColor color)
@@ -102,12 +122,17 @@ public class GameController : MonoBehaviour {
 	private void UpdateScore() {
 		score++;
 		scoreKeeper.text = score.ToString ();	
-		if (score > highScore)
+		if ((!hardModeFlag) && (score > highScore))
 		{
 			highScore = score;
 			highScoreKeeper.text = score.ToString ();
 		}
-	}
+        if ((hardModeFlag) && (score > hardModeHighScore))
+        {
+            hardModeHighScore = score;
+            hardModeHighScoreKeeper.text = score.ToString();
+        }
+    }
 
     private void CloseZones()
     {
@@ -198,7 +223,7 @@ public class GameController : MonoBehaviour {
 		TurnOffPipes ();
 		score = 0;
 		scoreKeeper.text = score.ToString ();
-		pipeGenerator = new PipeSequenceGenerator().addNewPipe();
+        pipeGenerator = new PipeSequenceGenerator().addNewPipe();
 		ballGenerator = new BallSequenceGenerator().addNewBall();
 		PlaySequenceToRemember();
 	}
@@ -212,7 +237,16 @@ public class GameController : MonoBehaviour {
 	private void PlaySequenceToRemember() {
 		remainingPipes = pipeGenerator.sequence.ToList<Pipe>();
 		remainingSequence = ballGenerator.sequence.ToList<BallColor>();
-		currentSpeedFactor = Mathf.Pow (speedFactor, remainingSequence.Count - 1);
+        currentSpeedFactor = Mathf.Pow(speedFactor, remainingSequence.Count - 1);
+        if (hardModeFlag)
+        {
+            Pipe pipe = remainingPipes.Last<Pipe>();
+            remainingPipes = new List<Pipe>();
+            remainingPipes.Add(pipe);
+            BallColor ballColor = remainingSequence.Last<BallColor>();
+            remainingSequence = new List<BallColor>();
+            remainingSequence.Add(ballColor);
+        }
         if (currentSpeedFactor < minimumSpeedFactor)
         {
             currentSpeedFactor = minimumSpeedFactor;

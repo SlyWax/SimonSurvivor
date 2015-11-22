@@ -25,12 +25,22 @@ namespace AssemblyCSharp
 		}
 
 		public PipeSequenceGenerator addNewPipe() {
-			var availablePipes = Enum.GetValues(typeof(Pipe)).Cast<Pipe>();
-			var colorIndex = random.Next (availablePipes.Count());
-			sequence.Add (availablePipes.ElementAt(colorIndex));
+			Pipe pipe;
+			do {
+				pipe = GenerateRandomPipe();
+			} while (!IsAcceptable(pipe));
+			sequence.Add(pipe);
 			return this;
 		}
-
+		
+		private Pipe GenerateRandomPipe() {
+			var availablePipes = Enum.GetValues(typeof(Pipe)).Cast<Pipe>();
+			return availablePipes.ElementAt (random.Next (availablePipes.Count ()));
+		}
+		
+		private bool IsAcceptable(Pipe pipe) {
+			return (sequence.Count < 2 || !(sequence.Reverse().Take(2).All(p => p == pipe)));
+		}
 		public PipeSequenceGenerator reset()
         {
 			sequence = new List<Pipe>();
