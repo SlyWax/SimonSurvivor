@@ -2200,7 +2200,7 @@ MonoBehaviour:
   scoreKeeper: {fileID: 2133737259}
   highScoreKeeper: {fileID: 109121079}
   intervalBetweenSequences: 1
-  pipeLightingTime: 1
+  pipeLightingTime: 1.5
   pipeIntervalTime: 1
   trapDoorClosingTime: 1
   trapDoorOpeningTime: 1
