@@ -2206,7 +2206,7 @@ MonoBehaviour:
   trapDoorOpeningTime: 1
   trapDoorWaitingTime: 2
   sequenceCountDown: 2
-  speedFactor: .949999988
+  speedFactor: .899999976
   currentSpeedFactor: 1
   minimumSpeedFactor: .400000006
 --- !u!4 &1860899575
