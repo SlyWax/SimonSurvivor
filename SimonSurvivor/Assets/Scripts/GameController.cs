@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	public Text sequenceHelper;
 	public UILabel scoreKeeper;
 	public UILabel highScoreKeeper;
+    public UILabel tutorialText;
 	public float intervalBetweenSequences = 1f;
 	public float pipeLightingTime = 1f;
 	public float pipeIntervalTime = 1f;
@@ -72,6 +73,7 @@ public class GameController : MonoBehaviour {
 		} 
 		if (Input.GetKeyDown (KeyCode.Space))
         {
+            tutorialText.text = "";
             ResetSequence();
 		}
 		if (Input.GetKeyDown (KeyCode.Delete)) {
