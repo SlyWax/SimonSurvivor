@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour {
 	public float sequenceCountDown = 5f;
 	public float speedFactor = 0.95f;
 	public float currentSpeedFactor = 1f;
+    public float minimumSpeedFactor = 0.4f;
 
     private PlayerController playerController;
 	private GameObject blueZone;
@@ -210,6 +211,10 @@ public class GameController : MonoBehaviour {
 		remainingPipes = pipeGenerator.sequence.ToList<Pipe>();
 		remainingSequence = ballGenerator.sequence.ToList<BallColor>();
 		currentSpeedFactor = Mathf.Pow (speedFactor, remainingSequence.Count - 1);
+        if (currentSpeedFactor < minimumSpeedFactor)
+        {
+            currentSpeedFactor = minimumSpeedFactor;
+        }
 		InvokeRepeating("UpdatePipes", intervalBetweenSequences * currentSpeedFactor,
 		                (pipeLightingTime + pipeIntervalTime) * currentSpeedFactor);
 	}
@@ -235,11 +240,6 @@ public class GameController : MonoBehaviour {
 	private void LightPipeWithColor(Pipe pipe, BallColor ballColor) {
 		Animator anim = PipeFor(pipe).GetComponent<Animator>();
 		anim.SetInteger("couleur", (int)ballColor);
-		//anim.SetBool("scintille", true);
-
-
-		//PipeFor(pipe).GetComponent<Renderer>().material.color = Color.white;
-		//SphereFor(pipe).GetComponent<Renderer>().material.color = ColorFor(ballColor);
 	}
 
 	private void TurnOffPipes() {
@@ -247,10 +247,6 @@ public class GameController : MonoBehaviour {
 		foreach (Pipe pipe in pipeTypes) {
 			Animator anim = PipeFor(pipe).GetComponent<Animator>();
 			anim.SetInteger("couleur", 99);
-			//anim.SetBool("scintille", true);
-
-			//PipeFor(pipe).GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 1f);
-			//SphereFor(pipe).GetComponent<Renderer>().material.color = Color.grey;
 		}
 	}
 
