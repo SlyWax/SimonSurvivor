@@ -240,6 +240,8 @@ public class GameController : MonoBehaviour {
 	private void LightPipeWithColor(Pipe pipe, BallColor ballColor) {
 		Animator anim = PipeFor(pipe).GetComponent<Animator>();
 		anim.SetInteger("couleur", (int)ballColor);
+		AudioSource leSon = PipeFor(pipe).GetComponent<AudioSource>();
+		leSon.Play();
 	}
 
 	private void TurnOffPipes() {
