@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour {
 	private GameObject sphereC;
 	private GameObject sphereD;
 	private Camera mainCamera;
+	private AudioSource sonCentre;
 
     private BallSequenceGenerator ballGenerator;
 	private PipeSequenceGenerator pipeGenerator;
@@ -58,6 +59,7 @@ public class GameController : MonoBehaviour {
 		sphereB = pipeB.transform.Find("Boule").gameObject;
 		sphereC = pipeC.transform.Find("Boule").gameObject;
 		sphereD = pipeD.transform.Find("Boule").gameObject;
+		sonCentre = (GameObject.Find("Audio Center")).GetComponent<AudioSource>();
 
 		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
@@ -270,6 +272,8 @@ public class GameController : MonoBehaviour {
 			remainingSequence = remainingSequence.Skip (1).ToList<BallColor> ();
 			OpenAllZonesOtherThan (ballColor);
 			Invoke ("CloseZones", trapDoorClosingTime * currentSpeedFactor);
+			sonCentre.pitch = 1.5f/currentSpeedFactor;
+			sonCentre.Play();
 		} else {
 			CancelInvoke();
 			IncrementSequence();
