@@ -1808,6 +1808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceHelper: {fileID: 1359840866}
   scoreKeeper: {fileID: 1460244507}
+  highScoreKeeper: {fileID: 0}
   intervalBetweenSequences: 1
   pipeLightingTime: 1
   pipeIntervalTime: 1
@@ -1815,6 +1816,8 @@ MonoBehaviour:
   trapDoorOpeningTime: 1
   trapDoorWaitingTime: 2
   sequenceCountDown: 5
+  speedFactor: .949999988
+  currentSpeedFactor: 1
 --- !u!4 &1860899575
 Transform:
   m_ObjectHideFlags: 0

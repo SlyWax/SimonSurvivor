@@ -131,8 +131,8 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145782}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: cb4f4eb4a8981324085097b090c73e5f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b02764f97061faf41bdc53df892ebe12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -162,6 +162,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: Boule
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Avatar
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
