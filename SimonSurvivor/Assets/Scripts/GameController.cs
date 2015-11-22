@@ -10,6 +10,7 @@ using AssemblyCSharp;
 public class GameController : MonoBehaviour {
 	public Text sequenceHelper;
 	public TextMesh scoreKeeper;
+	public TextMesh highScoreKeeper;
 	public float intervalBetweenSequences = 1f;
 	public float pipeLightingTime = 1f;
 	public float pipeIntervalTime = 1f;
@@ -17,6 +18,8 @@ public class GameController : MonoBehaviour {
 	public float trapDoorOpeningTime = 1f;
 	public float trapDoorWaitingTime = 2f;
 	public float sequenceCountDown = 5f;
+	public float speedFactor = 0.95f;
+	public float currentSpeedFactor = 1f;
 
     private PlayerController playerController;
 	private GameObject blueZone;
@@ -94,12 +97,13 @@ public class GameController : MonoBehaviour {
     }
 
 	private void UpdateScore() {
-		score++;	
+		score++;
+		scoreKeeper.text = score.ToString ();	
 		if (score > highScore)
 		{
 			highScore = score;
+			highScoreKeeper.text = score.ToString ();
 		}
-		scoreKeeper.text = score.ToString ();
 	}
 
     private void CloseZones()
@@ -190,6 +194,7 @@ public class GameController : MonoBehaviour {
 		CloseZones();
 		TurnOffPipes ();
 		score = 0;
+		scoreKeeper.text = score.ToString ();
 		pipeGenerator = new PipeSequenceGenerator().addNewPipe();
 		ballGenerator = new BallSequenceGenerator().addNewBall();
 		PlaySequenceToRemember();
@@ -204,15 +209,23 @@ public class GameController : MonoBehaviour {
 	private void PlaySequenceToRemember() {
 		remainingPipes = pipeGenerator.sequence.ToList<Pipe>();
 		remainingSequence = ballGenerator.sequence.ToList<BallColor>();
-		InvokeRepeating("UpdatePipes", intervalBetweenSequences, pipeLightingTime + pipeIntervalTime);
+		currentSpeedFactor = Mathf.Pow (speedFactor, remainingSequence.Count - 1);
+		InvokeRepeating("UpdatePipes", intervalBetweenSequences * currentSpeedFactor,
+		                (pipeLightingTime + pipeIntervalTime) * currentSpeedFactor);
 	}
 
 	private void UpdatePipes() {
-		if (remainingPipes.Any ()) {
-			LightPipeWithColor(remainingPipes.First<Pipe>(), remainingSequence.First<BallColor> ());
+		if (remainingPipes.Any()) {
+			LightPipeWithColor (remainingPipes.First<Pipe> (), remainingSequence.First<BallColor> ());
 			remainingPipes = remainingPipes.Skip (1).ToList<Pipe> ();
 			remainingSequence = remainingSequence.Skip (1).ToList<BallColor> ();
-			Invoke ("TurnOffPipes", pipeLightingTime);
+			if (remainingPipes.Count () >= 1) {
+				Invoke ("TurnOffPipes", pipeLightingTime * currentSpeedFactor);
+			} else {
+				CancelInvoke();
+				Invoke ("TurnOffPipes", pipeLightingTime);			
+				Invoke ("UpdatePipes", pipeLightingTime + pipeIntervalTime);
+			}
 		} else {
 			CancelInvoke();
 			PrepareTrapDoorSequence();
@@ -249,7 +262,8 @@ public class GameController : MonoBehaviour {
 	private void PrepareTrapDoorSequence() {
 		UpdateSequenceHelper ();
 		remainingSequence = ballGenerator.sequence.ToList<BallColor> ();
-		InvokeRepeating("UpdateTrapDoors", sequenceCountDown, trapDoorOpeningTime + trapDoorClosingTime + trapDoorWaitingTime);
+		InvokeRepeating("UpdateTrapDoors", sequenceCountDown * currentSpeedFactor,
+		                (trapDoorOpeningTime + trapDoorClosingTime + trapDoorWaitingTime) * currentSpeedFactor);
 	}
 
 	private void UpdateTrapDoors() {
@@ -257,7 +271,7 @@ public class GameController : MonoBehaviour {
 			var ballColor = remainingSequence.First<BallColor> ();
 			remainingSequence = remainingSequence.Skip (1).ToList<BallColor> ();
 			OpenAllZonesOtherThan (ballColor);
-			Invoke ("CloseZones", trapDoorClosingTime);
+			Invoke ("CloseZones", trapDoorClosingTime * currentSpeedFactor);
 		} else {
 			CancelInvoke();
 			IncrementSequence();
