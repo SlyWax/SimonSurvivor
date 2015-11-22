@@ -178,7 +178,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: HighScore Hard Mode
+  mText: HighScore Mode Difficile
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 0
@@ -628,7 +628,7 @@ Transform:
   m_GameObject: {fileID: 455097338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00364298723, y: .00364298723, z: .00364298723}
+  m_LocalScale: {x: .00315457419, y: .00315457419, z: .00315457419}
   m_Children:
   - {fileID: 2133737256}
   - {fileID: 1418445707}
@@ -637,6 +637,7 @@ Transform:
   - {fileID: 33413981}
   - {fileID: 511669430}
   - {fileID: 916866559}
+  - {fileID: 1678623343}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!54 &455097340
@@ -1280,7 +1281,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 916866558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 671, y: 1009, z: 474}
+  m_LocalPosition: {x: 446, y: 1425, z: 474}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 455097339}
@@ -1306,8 +1307,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1000, y: 480, z: 0}
-  m_Center: {x: 0, y: -240, z: 0}
+  m_Size: {x: 1200, y: 800, z: 0}
+  m_Center: {x: 0, y: -400, z: 0}
 --- !u!114 &916866562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,18 +1339,20 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 1
-  mWidth: 1000
-  mHeight: 480
+  mWidth: 1200
+  mHeight: 800
   mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.08333325
+  aspectRatio: 1.66666663
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: "Peek into the glowing pipes, then watch your step... \n\nDelete - calibrate\nSpacebar
-    - start normal mode\nReturn - start hard mode"
+  mText: "Penchez-vous pour voir les couleurs \xE0 l'int\xE9rieur des tubes lorsqu'ils
+    s'allument puis reproduisez la s\xE9quence en vous pla\xE7ant sur les dalles correspondantes.
+    Fiez-vous \xE0 votre ombre !\n\n\n\nSuppr - Calibrer l'oculus\nEspace - D\xE9marrer
+    mode normal\nEntr\xE9e - D\xE9marrer mode difficile"
   mFontSize: 80
   mFontStyle: 0
   mAlignment: 1
@@ -2626,6 +2629,125 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 490834, guid: 172a51f3d4889f3489128992d097e0a0, type: 2}
   m_PrefabInternal: {fileID: 1633548657}
+--- !u!1 &1678623339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1678623343}
+  - 114: {fileID: 1678623342}
+  - 65: {fileID: 1678623341}
+  - 114: {fileID: 1678623340}
+  m_Layer: 8
+  m_Name: Taunt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1678623340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678623339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4e76ca1e5bd9d41938bc027a0aa6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1678623341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678623339}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1000, y: 560, z: 0}
+  m_Center: {x: 0, y: -280, z: 0}
+--- !u!114 &1678623342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678623339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 1
+  mWidth: 1000
+  mHeight: 560
+  mDepth: 1
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.78571427
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
+  mText: "Sylvestre Bauhain\nAurelien Gamet\nGuillame Laruelle\nGerard Mendes\n...
+    m'ont tu\xE9.\n\nMerci d'avoir jou\xE9 !"
+  mFontSize: 80
+  mFontStyle: 0
+  mAlignment: 1
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 3
+  mMaterial: {fileID: 0}
+  mApplyGradient: 1
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: .699999988, g: .699999988, b: .699999988, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!4 &1678623343
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678623339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 671, y: -3435, z: 474.000031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 455097339}
+  m_RootOrder: 7
 --- !u!1 &1727847915
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,13 +24,13 @@ public class PlayerController : MonoBehaviour {
     {
         if (isFalling)
         {
-            if (transform.position.y > -14)
+            if (transform.position.y > -13.5f)
             {
                 transform.position += Vector3.down * fallingSpeed * Time.deltaTime;
             }
-            else if (transform.position.y > -15)
+            else if (transform.position.y > -14.5f)
             {
-                transform.position += Vector3.down * fallingSpeed * Time.deltaTime * 0.1f;
+                transform.position += Vector3.down * fallingSpeed * Time.deltaTime * 0.05f;
 				if (!impaled) {
 					sonDeath.Play();
 				}
