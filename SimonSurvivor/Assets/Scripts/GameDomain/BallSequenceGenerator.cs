@@ -25,10 +25,21 @@ namespace AssemblyCSharp
 		}
 
 		public BallSequenceGenerator addNewBall() {
-			var availableColors = Enum.GetValues(typeof(BallColor)).Cast<BallColor>();
-			var colorIndex = random.Next (availableColors.Count());
-			sequence.Add (availableColors.ElementAt(colorIndex));
+			BallColor color;
+			do {
+				color = GenerateRandomColor();
+			} while (!IsAcceptable(color));
+			sequence.Add (color);
 			return this;
+		}
+
+		private BallColor GenerateRandomColor() {
+			var availableColors = Enum.GetValues(typeof(BallColor)).Cast<BallColor>();
+			return availableColors.ElementAt (random.Next (availableColors.Count ()));
+		}
+
+		private bool IsAcceptable(BallColor color) {
+			return (sequence.Count < 2 || !(sequence.Reverse().Take(2).All(c => c == color)));
 		}
 
         public BallSequenceGenerator reset()
