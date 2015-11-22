@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour {
 			InputTracking.Recenter ();
 		}
 		if (playerController.dead) {
-			playerController.Reset();
+            playerController.Reset();
             CancelInvoke();
             CloseZones();
             TurnOffPipes();

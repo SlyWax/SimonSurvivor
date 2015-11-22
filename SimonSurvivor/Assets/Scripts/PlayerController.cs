@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour {
             {
                 transform.position += Vector3.down * fallingSpeed * Time.deltaTime;
             }
-            else if (transform.position.y > -14.5f)
+            else if (transform.position.y > -14.75f)
             {
-                transform.position += Vector3.down * fallingSpeed * Time.deltaTime * 0.05f;
+                transform.position += Vector3.down * fallingSpeed * Time.deltaTime * 0.025f;
 				if (!impaled) {
 					sonDeath.Play();
 				}
