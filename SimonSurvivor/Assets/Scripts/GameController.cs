@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour {
 	private GameObject sphereD;
 	private Camera mainCamera;
 	private AudioSource sonCentre;
+	private AudioSource sonFace;
 
     private BallSequenceGenerator ballGenerator;
 	private PipeSequenceGenerator pipeGenerator;
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour {
 		sphereC = pipeC.transform.Find("Boule").gameObject;
 		sphereD = pipeD.transform.Find("Boule").gameObject;
 		sonCentre = (GameObject.Find("Audio Center")).GetComponent<AudioSource>();
+		sonFace = (GameObject.Find("Audio Face")).GetComponent<AudioSource>();
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
@@ -132,7 +134,10 @@ public class GameController : MonoBehaviour {
             hardModeHighScore = score;
             hardModeHighScoreKeeper.text = score.ToString();
         }
-    }
+		// on joue le son apres que les dalles se soit refermees
+		float delay = (sonCentre.clip.length / (1.5f/currentSpeedFactor));
+		sonFace.PlayDelayed(delay);
+	}
 
     private void CloseZones()
     {
