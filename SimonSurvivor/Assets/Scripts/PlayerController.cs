@@ -3,14 +3,20 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     public bool isFalling = false;
+	public bool impaled = false;
 	public bool dead = false;
     public float fallingSpeed = 1.0f;
     private Vector3 originPosition;
+
+	private AudioSource sonFall;
+	private AudioSource sonDeath;
 
     // Use this for initialization
     void Start()
     {
         originPosition = transform.position;
+		sonFall = (GameObject.Find("Audio Fall")).GetComponent<AudioSource>();
+		sonDeath = (GameObject.Find("Audio Death")).GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +31,10 @@ public class PlayerController : MonoBehaviour {
             else if (transform.position.y > -15)
             {
                 transform.position += Vector3.down * fallingSpeed * Time.deltaTime * 0.1f;
+				if (!impaled) {
+					sonDeath.Play();
+				}
+				impaled = true;
             }
             else
             {
@@ -36,6 +46,7 @@ public class PlayerController : MonoBehaviour {
     public void Fall()
     {
         isFalling = true;
+		sonFall.Play();
     }
 
     public void Reset()
@@ -43,5 +54,6 @@ public class PlayerController : MonoBehaviour {
         transform.position = originPosition;
         isFalling = false;
 		dead = false;
+		impaled = false;
     }
 }
