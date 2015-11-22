@@ -9,8 +9,8 @@ using AssemblyCSharp;
 
 public class GameController : MonoBehaviour {
 	public Text sequenceHelper;
-	public TextMesh scoreKeeper;
-	public TextMesh highScoreKeeper;
+	public UILabel scoreKeeper;
+	public UILabel highScoreKeeper;
 	public float intervalBetweenSequences = 1f;
 	public float pipeLightingTime = 1f;
 	public float pipeIntervalTime = 1f;
@@ -61,17 +61,18 @@ public class GameController : MonoBehaviour {
 
 		playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		mainCamera = Camera.main;
-		ResetSequence();
 		InputTracking.Recenter ();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Backspace)) {
-			ResetSequence();
+		if (Input.GetKeyDown (KeyCode.Backspace))
+        {
+            ResetSequence();
 		} 
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			IncrementSequence();
+		if (Input.GetKeyDown (KeyCode.Space))
+        {
+            ResetSequence();
 		}
 		if (Input.GetKeyDown (KeyCode.Delete)) {
 			InputTracking.Recenter ();
