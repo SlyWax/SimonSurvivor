@@ -45,8 +45,8 @@ public class GameController : MonoBehaviour {
     private BallSequenceGenerator ballGenerator;
 	private PipeSequenceGenerator pipeGenerator;
 	private int score;
-	private int highScore = 0;
-    private int hardModeHighScore = 0;
+	private int highScore = 12;
+    private int hardModeHighScore = 10;
 	private IList<Pipe> remainingPipes;
 	private IList<BallColor> remainingSequence;
 

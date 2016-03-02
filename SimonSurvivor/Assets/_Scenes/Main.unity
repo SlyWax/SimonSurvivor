@@ -178,7 +178,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: HighScore Mode Difficile
+  mText: Record -  Mode Difficile
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: 0
+  mText: 12
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 1
@@ -445,7 +445,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 400, y: 60, z: 0}
+  m_Size: {x: 440, y: 60, z: 0}
   m_Center: {x: 0, y: -30, z: 0}
 --- !u!114 &366901215
 MonoBehaviour:
@@ -477,17 +477,17 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 1
-  mWidth: 400
+  mWidth: 440
   mHeight: 60
   mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.66666651
+  aspectRatio: 7.33333349
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: HighScore
+  mText: Record - Mode Normal
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 16a2d4ace59bac64dbcf4085964b38eb, type: 2}
-  mText: 0
+  mText: 10
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 1
@@ -3353,7 +3353,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133737255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 494, y: 784, z: 439}
+  m_LocalPosition: {x: 494, y: 176, z: 439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 455097339}
